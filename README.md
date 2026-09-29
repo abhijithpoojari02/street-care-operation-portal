@@ -1,162 +1,193 @@
-🏙️ Street Care Operation Portal
+# 🏙️ Street Care Operation Portal 🛠️
 
 A web-based Smart Street Management System developed using the MERN stack. The platform helps citizens report street-related issues, administrators manage complaints and assign tasks, and workers track and resolve assigned issues.
 
-📌 Project Overview
+---
 
-The Street Care Operation Portal aims to improve street maintenance and public issue management through a centralized web application. It provides separate dashboards for administrators, citizens and workers to make issue reporting, task assignment and resolution easier.
+## 📌 Project Overview
 
-✨ Features
-👤 Citizen Dashboard
-User registration and login.
-Report street issues such as potholes, damaged roads, garbage, drainage and streetlight problems.
-Upload images or videos of reported issues.
-Submit issue locations.
-Track reported issues and their status.
-Submit feedback after issue resolution.
-🛠️ Admin Dashboard
-Secure administrator login.
-View and manage reported street issues.
-Manage registered users and workers.
-Assign reported issues to workers.
-Monitor issue progress and resolution.
-View issue statistics and analytics.
-👷 Worker Dashboard
-Worker registration and login.
-View assigned street issues.
-Track pending and in-progress tasks.
-Update issue status.
-Mark assigned issues as resolved.
-📊 Additional Features
-Role-based dashboards for citizens, administrators and workers.
-Issue status tracking.
-Interactive maps for issue locations.
-Data visualization and analytics.
-Centralized issue management.
-🧰 Technologies Used
-Technology	Purpose
-React.js	Frontend user interface
-HTML5	Web page structure
-CSS3	Styling and responsive design
-JavaScript	Application logic
-Node.js	Backend runtime
-Express.js	Backend API and routing
-MongoDB	Database
-Mongoose	MongoDB object modeling
-Axios	API communication
-JWT	Authentication
-Bcrypt.js	Password hashing
-Leaflet / OpenStreetMap	Map and location functionality
-Recharts	Data visualization
-Vite	Frontend development server
-📂 Project Structure
+The **Street Care Operation Portal** aims to improve street maintenance and public issue management through a centralized web application. It provides separate dashboards for administrators, citizens, and workers to make issue reporting, task assignment, and resolution seamless and efficient.
+
+---
+
+## ✨ Features
+
+### 👤 Citizen Dashboard
+- User registration and login.
+- Report street issues (Potholes, Damaged Roads, Garbage, Drainage, Streetlights, Parks).
+- Upload images or videos of reported issues.
+- Submit precise issue locations.
+- Track status of reported issues in real-time.
+- Submit feedback after issue resolution.
+
+### 🛠️ Admin Dashboard
+- Secure administrator login.
+- Automated AI-powered issue classification.
+- View and manage all reported street issues.
+- Manage registered users and workers.
+- Assign reported issues to workers.
+- Monitor resolution progress and analytics.
+
+### 👷 Worker Dashboard
+- Worker registration and login.
+- View assigned tasks and details.
+- Track pending and in-progress tasks.
+- Update task status and mark issues as resolved.
+
+---
+
+## 🧰 Technologies Used
+
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React.js, Vite, Tailwind CSS, Axios, Lucide Icons |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB, Mongoose |
+| **Authentication** | JSON Web Tokens (JWT), Bcrypt.js |
+| **File Storage** | Multer (Image & Video Uploads) |
+| **Maps & AI** | Leaflet / OpenStreetMap, Keyword AI Classifier |
+
+---
+
+## 📂 Project Architecture
+
+```
 Street_Care/
-│
-├── backend/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── .env
-│   ├── .gitignore
-│   ├── package.json
-│   └── server.js
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── index.html
-│   └── package.json
-│
-└── README.md
+├── backend/            # Express.js REST API & MongoDB models
+│   ├── config/         # Multer file upload & app configurations
+│   ├── controllers/    # API Controllers (Issues, Complaints, Workers, Analytics)
+│   ├── middleware/     # JWT Auth & Admin protection middleware
+│   ├── models/         # Mongoose Schemas (User, Worker, Issue, Complaint)
+│   ├── routes/         # API Route handlers
+│   ├── scripts/        # Seed scripts (createAdmin.js)
+│   ├── services/       # AI Classifier service
+│   └── server.js       # Main server entrypoint
+└── frontend/           # React + Vite Single Page Application
+    ├── src/
+    │   ├── components/ # Reusable UI components
+    │   ├── context/    # Auth & state management context
+    │   ├── pages/      # User, Worker, & Admin pages
+    │   └── services/   # Axios API client setup
+    └── package.json
+```
 
-Note: The folder structure above is illustrative. Adjust it to match your actual project files.
+---
 
-⚙️ Installation and Setup
-Prerequisites
+## ⚙️ Installation and Setup
 
-Install the following before running the project:
+### Prerequisites
 
-Node.js
-MongoDB or MongoDB Atlas
-Git
-A code editor such as Visual Studio Code
-1. Clone the Repository
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [MongoDB](https://www.mongodb.com/) (running locally or MongoDB Atlas URI)
+- [Git](https://git-scm.com/)
+
+---
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/abhijithpoojari02/street-care-operation-portal.git
-2. Navigate to the Project
 cd street-care-operation-portal
-3. Set Up the Backend
-cd backend
-npm install
+```
 
-Create a .env file inside the backend directory and configure your environment variables:
+---
 
-PORT=5001
-MONGO_URI=mongodb://localhost:27017/street-care-portal
-JWT_SECRET=replace_with_a_new_secure_random_secret
-JWT_EXPIRE=30d
+### 2. Backend Setup
 
-ADMIN_EMAIL=your_admin_email
-ADMIN_PASSWORD=your_strong_admin_password
-ADMIN_NAME=Admin
+1. Navigate to the backend folder:
+   ```bash
+   cd backend
+   ```
 
-Important: Replace the example credentials and secret with your own private values. Never upload your .env file to GitHub.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Start the backend:
+3. Create your `.env` file by copying `.env.example`:
+   ```bash
+   cp .env.example .env
+   ```
 
-npm start
+4. Configure your `.env` environment variables:
+   ```env
+   PORT=5001
+   MONGO_URI=mongodb://localhost:27017/street-care-portal
+   JWT_SECRET=your_jwt_secret_key_here
 
-If your backend does not have a start script, use:
+   # Default Admin Credentials
+   ADMIN_EMAIL=admin@streetcare.com
+   ADMIN_PASSWORD=Admin@123
+   ADMIN_NAME=Admin
+   ```
 
-node server.js
-4. Set Up the Frontend
+5. (Optional) Seed the default admin user:
+   ```bash
+   node scripts/createAdmin.js
+   ```
 
-Open a new terminal and navigate to the frontend directory:
+6. Start the backend server:
+   ```bash
+   npm start
+   # or for development with nodemon:
+   npm run dev
+   ```
 
-cd frontend
-npm install
+---
 
-Start the frontend:
+### 3. Frontend Setup
 
-npm run dev
-5. Access the Application
+1. Open a new terminal and navigate to the frontend folder:
+   ```bash
+   cd frontend
+   ```
 
-Open the local URL displayed by Vite in your terminal. If your Vite configuration uses port 3000, visit:
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-http://localhost:3000
+3. Create your `.env` file by copying `.env.example`:
+   ```bash
+   cp .env.example .env
+   ```
 
-The backend runs on the port configured in your .env file.
+4. Start the frontend development server:
+   ```bash
+   npm run dev
+   ```
 
-🔐 Authentication and Security
-Role-based access for citizens, administrators and workers.
-JWT-based authentication.
-Password hashing using Bcrypt.js.
-Environment variables for sensitive configuration.
-Protected backend routes for authorized operations.
-🚀 Future Enhancements
-AI-based street issue classification.
-Duplicate issue detection.
-Worker performance analytics.
-Real-time issue status notifications.
-Advanced reporting and analytics.
-🎯 Project Objective
+5. Access the application in your browser (typically `http://localhost:5173` or `http://localhost:3000`).
 
-To provide a centralized digital platform that simplifies street issue reporting, improves task coordination and supports efficient street maintenance through technology.
+---
 
-👨‍💻 Author
+## 🔑 Default Credentials for Local Testing
 
-Abhijith Poojari
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin@streetcare.com` | `Admin@123` |
 
-GitHub: abhijithpoojari02
+> ⚠️ **Security Note**: For production deployments, change all default credentials and update `JWT_SECRET` in your `.env` file. Never commit `.env` files to public repositories.
 
-Project: Street Care Operation Portal
+---
 
-📄 License
+## 🔐 Authentication & Security
 
-This project is developed for educational and learning purposes.
+- Role-based access control for Citizens, Administrators, and Workers.
+- JWT-based authorization headers.
+- Password hashing using `bcryptjs`.
+- Strict `.gitignore` rules ensuring secrets and `.env` files remain private.
+
+---
+
+## 👨‍💻 Author
+
+**Abhijith Poojari**  
+GitHub: [@abhijithpoojari02](https://github.com/abhijithpoojari02)
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
